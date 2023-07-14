@@ -449,7 +449,7 @@ var init = () => {
 
         switch(level+1)
         {
-            case 1: cost = 1e1; break;
+            case 1: cost = 1e10; break;
             case 2: cost = 4.05e22; break;
             case 3: cost = 2e15; break; 
             case 4: cost = 1.0001e10; break; // To compensate for numerical errors
@@ -616,7 +616,7 @@ var openHiscores = () => {
 
                 ui.createLabel
                 ({
-                    text: "Dilemma 4",
+                    text: "Dilemma 4 (unimplemented)",
                     isVisible : true,
                     
                 }),
@@ -726,18 +726,7 @@ var openDilemmaSelectMenu = () => {
                         
                     }
                 }),
-                ui.createButton
-                ({
-                    text: "Dilemma 4",
-                    isVisible : true,
-                    onClicked: () =>
-                    {
-                        Sound.playClick();
-                        openDilemmaConfirmationPopup(4);
-                    
-                        
-                    }
-                }),
+                
 
 
                 ui.createScrollView
@@ -1478,12 +1467,15 @@ var getSecondaryEquation = () => {
                 result += "\\dot{\\rho}=(c_1c_2c_3c_4c_5)\\frac{600-t}{3000}";
                 break;
             case 2:
-                result += "\\dot{\\rho}=(c_1c_2c_3c_4c_5)\\frac{600-t}{9000}";
+                result += "\\dot{\\rho}=(c_1c_2c_3c_4c_5)\\frac{600-t}{6000}";
                 break;
             case 3:
-                result += "\\dot{\\rho}=(c_1c_2c_3c_4c_5)\\frac{600-t}{11000}";
+                result += "\\dot{\\rho}=(c_1c_2c_3c_4c_5)\\frac{600-t}{9000}";
                 break;
             case 4:
+                result += "\\dot{\\rho}=(c_1c_2c_3c_4c_5)\\frac{600-t}{11000}";
+                break;
+            case 5:
                 result += "\\dot{\\rho}=(c_1c_2c_3c_4c_5)\\frac{600-t}{12000}";
                 break;
         }
@@ -1521,6 +1513,14 @@ var getSecondaryEquation = () => {
                 result += "c=c_3(min(30, abs(30tan(\\frac{t}{10})))-\\frac{t}{30})";
                 break;
             case 4:
+                result += "\\dot{\\rho} = a + b + c\\\\";
+                result += "a=c_1(25sin(\\frac{t}{10}) - \\frac{t}{30})";
+                result += "\\\\";
+                result += "b=c_2(25cos^2(\\frac{t}{20}) - \\frac{t}{30})";
+                result += "\\\\";
+                result += "c=c_3(min(25, abs(25tan(\\frac{t}{10})))-\\frac{t}{30})";
+                break;
+            case 5:
                 result += "\\dot{\\rho} = a + b + c\\\\";
                 result += "a=c_1(20sin(\\frac{t}{10}) - \\frac{t}{30})";
                 result += "\\\\";
@@ -1647,7 +1647,7 @@ var getTertiaryEquation = () => {
             break;
     }
 
-    result += "\\;" + "\\;" + isLemmaProved[0] + "\\;" + bestTimes[0][1] + "\\;" + qs[0] + "\\;" + currentLemmaNumber;
+    //result += "\\;" + "\\;" + isLemmaProved[0] + "\\;" + bestTimes[0][1] + "\\;" + qs[0] + "\\;" + currentLemmaNumber;
     
 
     let lemmaNumber = currentLemmaNumber;
